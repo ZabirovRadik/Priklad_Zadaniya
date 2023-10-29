@@ -1,0 +1,29 @@
+Multithreading tasks
+
+Task 1. Using the multiprocessing package, parallelize the procedure
+for calculating the sum of the matrix elements to the processes (parallel the calculation of the sum by columns or
+rows, calculate the total amount in the general flow). The written application must
+be console-based. Command line arguments are numerical values of the legs.
+
+Task 2. Using the concurrent.futures module, parallelize the procedure
+for calculating the sum of the matrix elements to the processes (parallel the calculation of the sum by columns or
+rows, calculate the total amount in the general flow). The written application must
+be console-based. Command line arguments are numerical values of the legs.
+
+Task 3. Using the multiprocessing package, parallelize
+the search procedure for a given keyword in several text files to the processes. The written
+application must be console-based. The command line arguments are a keyword and
+a list of files.
+
+Task 4. Using the concurrent.futures module, parallelize
+the search procedure for a given keyword in several text files to the processes. The written
+application must be console-based. The command line arguments are a keyword and
+a list of files.
+
+Task 5. Using the multiprocessing package, parallelize
+the image loading procedure from the URL list to the processes. The written application must be console-based.
+Command line arguments are a list of URLs.
+
+Task 6. Using the concurrent.futures module, parallelize
+the image loading procedure from the URL list to the processes. The written application must be console-based.
+Command line arguments are a list of URLs.
