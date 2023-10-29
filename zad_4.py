@@ -2,7 +2,7 @@
 import logging
 import argparse
 import concurrent.futures
-from concurrent.futures import ThreadPoolExecutor as TPE
+from concurrent.futures import ThreadPoolExecutor
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -22,7 +22,7 @@ def find_word(word: str, file_name: str):
 
 def find_word_files(key_word: str, list_of_files: list) -> list:
     results = []
-    with TPE(len(list_of_files)) as executor:
+    with ThreadPoolExecutor(len(list_of_files)) as executor:
         future_to_file = {executor.submit(find_word, key_word, file): file for file in list_of_files}
         for future in concurrent.futures.as_completed(future_to_file):
             try:
