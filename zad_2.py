@@ -2,7 +2,7 @@
 import logging
 import argparse
 import numpy
-from multiprocessing import Pool
+from concurrent.futures import ThreadPoolExecutor
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -13,8 +13,8 @@ def sum_elem_matrix(num_columns: int, num_raws: int, matrix: list):
         raise IndexError("size is not matrix size") 
     high = max(num_columns, num_raws)
     lists = numpy.array_split(matrix, high)
-    with Pool(high) as p:
-        result = p.map(sum, lists)
+    with ThreadPoolExecutor(high) as executor:
+        result = executor.map(sum, lists)
     return sum(result)
 
 
