@@ -8,12 +8,12 @@ from multiprocessing import Pool
 logging.basicConfig(level=logging.DEBUG)
 
 
-def sum_elem_matrix(num_columns: int, num_raws: int, matrix: list):
+def sum_elem_matrix(num_columns: int, num_raws: int, matrix: list, cores: int = 6):
     if len(matrix) != num_columns * num_raws:
         raise IndexError("size is not matrix size") 
     high = max(num_columns, num_raws)
     lists = numpy.array_split(matrix, high)
-    with Pool(high) as p:
+    with Pool(cores) as p:
         result = p.map(sum, lists)
     return sum(result)
 

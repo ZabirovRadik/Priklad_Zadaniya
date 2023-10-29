@@ -19,9 +19,9 @@ def find_word(word: str, file_name: str):
     
 
 
-def find_word_files(key_word: str, list_of_files: list) -> list:
+def find_word_files(key_word: str, list_of_files: list, cores: int = 6) -> list:
     results = []
-    with Pool(len(list_of_files)) as p:
+    with Pool(cores) as p:
         for file_name in list_of_files:
             result = p.apply_async(find_word, (key_word, file_name))
             results.append(result.get())

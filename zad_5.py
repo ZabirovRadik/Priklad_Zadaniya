@@ -28,8 +28,8 @@ def save_image(url: str, base_folder: str = "dataset") -> None:
         logging.exception(f"Unable to download image: {url}:{e}")
 
 
-def download_images(URLs: list):
-    with Pool(len(URLs)) as p:
+def download_images(URLs: list, cores: int = 6):
+    with Pool(cores) as p:
         p.map(save_image, URLs)
     return True
 

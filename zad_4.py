@@ -20,9 +20,9 @@ def find_word(word: str, file_name: str):
     
 
 
-def find_word_files(key_word: str, list_of_files: list) -> list:
+def find_word_files(key_word: str, list_of_files: list, cores: int = 6) -> list:
     results = []
-    with ThreadPoolExecutor(len(list_of_files)) as executor:
+    with ThreadPoolExecutor(cores) as executor:
         future_to_file = {executor.submit(find_word, key_word, file): file for file in list_of_files}
         for future in concurrent.futures.as_completed(future_to_file):
             try:

@@ -8,12 +8,12 @@ from concurrent.futures import ThreadPoolExecutor
 logging.basicConfig(level=logging.DEBUG)
 
 
-def sum_elem_matrix(num_columns: int, num_raws: int, matrix: list):
+def sum_elem_matrix(num_columns: int, num_raws: int, matrix: list, cores: int = 6):
     if len(matrix) != num_columns * num_raws:
         raise IndexError("size is not matrix size") 
     high = max(num_columns, num_raws)
     lists = numpy.array_split(matrix, high)
-    with ThreadPoolExecutor(high) as executor:
+    with ThreadPoolExecutor(cores) as executor:
         result = executor.map(sum, lists)
     return sum(result)
 

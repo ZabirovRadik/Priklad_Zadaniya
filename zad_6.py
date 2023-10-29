@@ -3,9 +3,11 @@ import logging
 import argparse
 import os
 import requests
+from time import time
 from concurrent.futures import ThreadPoolExecutor
 
 
+start = time()
 logging.basicConfig(level=logging.DEBUG)
 
 
@@ -28,8 +30,8 @@ def save_image(url: str, base_folder: str = "dataset") -> None:
         logging.exception(f"Unable to download image: {url}:{e}")
 
 
-def download_images(URLs: list):
-    with ThreadPoolExecutor(len(URLs)) as executor:
+def download_images(URLs: list, cores: int = 6):
+    with ThreadPoolExecutor(cores) as executor:
         executor.map(save_image, URLs)
     return True
 
@@ -45,3 +47,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     res = download_images(args.URLs)
     logging.info(res)
+    logging.info(time() - start )
